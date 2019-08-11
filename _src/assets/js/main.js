@@ -3,6 +3,7 @@
 const input = document.querySelector('.input__Search');
 const btnSearch = document.querySelector('.btn__search');
 let resultsList = document.querySelector('.results__list');
+let favNewItem = document.querySelector('.fav__newItem');
 
 //variables declaradas de forma global para poder usarlas en las distintas funciones
 let searchValue = '';
@@ -14,16 +15,44 @@ let itemResult = {
   'status': ''
 };
 
+const favs = [];
+
+let favObjet = {
+  'name':'',
+  'nickname': ''
+};
+
+function handleFav(event){
+  const currentCharacter = event.currentTarget;
+  console.log(currentCharacter);
+
+  currentCharacter.classList.toggle('favourite');
+
+  if (currentCharacter.classList.contains('favourite') === true){
+    favs.push(favObjet);
+  }else {
+    //quitamos del array
+  }
+  console.log(favs);
+}
+
+function activateFavs(){
+  let mycharacter = document.querySelector('.newItem');
+  mycharacter.addEventListener('click', handleFav);
+}
+
 //función para mostrar los resultados en pantalla
 function showResult(){
   resultsList.innerHTML = `
-  <li>
-  <h3>${itemResult.name}</h3>
-  <h4>${itemResult.nickname}</h4>
-  <h5>${itemResult.status}<h5>
-  <img src="${itemResult.image}">
+  <li class="newItem">
+  <h3 class="newItem__title">${itemResult.name}</h3>
+  <h4 class="newItem__nickname">${itemResult.nickname}</h4>
+  <h4 class="newItem__status">${itemResult.status}<h4>
+  <img class="image" src="${itemResult.image}">
   </li>
   `;
+
+  activateFavs();
 }
 
 //función que hace la petición al API
