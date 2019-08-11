@@ -12,7 +12,6 @@ let itemResult = {
   'image': '',
   'nickname': '',
   'status': ''
-
 };
 
 //función para mostrar los resultados en pantalla
@@ -48,7 +47,6 @@ function getApiResults(){
 
 //función que añade el valor del input a la url base para poder hacer la búsqueda
 function getCompleteEndpoint(){
-
   const urlBase = 'https://www.breakingbadapi.com/api/characters?name=';
   endpoint = urlBase + searchValue;
 
