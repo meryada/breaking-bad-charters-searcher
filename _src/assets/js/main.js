@@ -16,23 +16,31 @@ let itemResult = {
 };
 
 const favs = [];
+let currentCharacterObjet = {
+  'favName': '',
+  'favNickname': ''
+}
 
-let favObjet = {
-  'name':'',
-  'nickname': ''
-};
+
 
 function handleFav(event){
   const currentCharacter = event.currentTarget;
-  console.log(currentCharacter);
+  currentCharacterObjet = {
+    'favName': currentCharacter.getAttribute('data-name'),
+    'favNickname': currentCharacter.getAttribute('data-name')
+  }
 
   currentCharacter.classList.toggle('favourite');
 
+
   if (currentCharacter.classList.contains('favourite') === true){
-    favs.push(favObjet);
+  //añade elemento al array de favoritos
+    favs.push(currentCharacterObjet);
   }else {
-    //quitamos del array
+  //quitamos del array de favoritos
   }
+  //pintar el array
+  console.log(currentCharacter);
   console.log(favs);
 }
 
@@ -44,7 +52,7 @@ function activateFavs(){
 //función para mostrar los resultados en pantalla
 function showResult(){
   resultsList.innerHTML = `
-  <li class="newItem">
+  <li class="newItem" data-name="${itemResult.name}" data-nickname="${itemResult.nickname}">
   <h3 class="newItem__title">${itemResult.name}</h3>
   <h4 class="newItem__nickname">${itemResult.nickname}</h4>
   <h4 class="newItem__status">${itemResult.status}<h4>
